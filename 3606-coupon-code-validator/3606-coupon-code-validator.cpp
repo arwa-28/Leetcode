@@ -4,6 +4,8 @@ public:
         vector <pair <string, string>> v;   
         
         for (int i = 0; i < code.size(); i++){
+            if (!isActive[i] || code[i].empty()) continue;
+
             if (businessLine[i] != "electronics" && businessLine[i] != "grocery" && businessLine[i] != "pharmacy" && businessLine[i] != "restaurant") continue;
             bool ok = 1;
             for (auto &c : code[i]){
@@ -12,7 +14,7 @@ public:
                     break;
                 }
             }
-            if (ok && isActive[i] && !code[i].empty()) v.push_back({businessLine[i], code[i]});
+            if (ok) v.push_back({businessLine[i], code[i]});
         }
 
         sort(v.begin(), v.end());
